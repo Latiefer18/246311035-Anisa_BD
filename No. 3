@@ -1,0 +1,8 @@
+SELECT 
+    r.Nama_Ruas_Jalan, 
+    COUNT(p.Kode_Perjalanan) AS Total_Perjalanan, 
+    AVG(p.Waktu_Nyata) AS Rata_Waktu_Nyata
+FROM Ruas_Jalan r
+JOIN Perjalanan p ON r.Kode_Ruas = p.Kode_Ruas
+WHERE p.Waktu_Nyata > 15
+GROUP BY r.Kode_Ruas, r.Nama_Ruas_Jalan;

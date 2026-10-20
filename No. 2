@@ -1,0 +1,27 @@
+-- Memasukkan 3 baris data dummy ke Tabel Induk 1: Pengguna
+INSERT INTO Pengguna (ID_Pengguna, Peran_Pengguna) VALUES
+('P01', 'Ojek Online'),
+('P02', 'Pengendara Pribadi'),
+('P03', 'Pengemudi Ojol');
+
+-- Memasukkan 3 baris data dummy ke Tabel Induk 2: Ruas_Jalan
+INSERT INTO Ruas_Jalan (Kode_Ruas, Nama_Ruas_Jalan, Kondisi_Fisik, Faktor_Pemicu, Potensi_Bahaya) VALUES
+('R01', 'Koridor Utama Jl. Raya Maospati', 'Cukup mulus, lebar sedang', 'Kepadatan arus jam sibuk', 'Antrean memanjang'),
+('R02', 'Jalur Alt. Plaosan - Sarangan', 'Jalan sempit, rusak, minim penerangan', 'Pengalihan sistem otomatis', 'Risiko jalan tikus & kecelakaan'),
+('R03', 'Jl. Urip Sumoharjo', 'Aspal rata, volume kendaraan berat tinggi', 'Kecepatan tinggi, minim penerangan', 'Lintas kendaraan muatan besar');
+
+-- Memasukkan 3 baris data dummy ke Tabel Transaksi/Anak: Perjalanan
+INSERT INTO Perjalanan (Kode_Perjalanan, ID_Pengguna, Kode_Ruas, Lokasi_Awal, Lokasi_Tujuan, Estimasi_Waktu, Estimasi_Tarif, Waktu_Nyata, Kendala_Operasional) VALUES
+('TRP01', 'P01', 'R01', 'Jl. Sudirman', 'Pasar Baru', 15, 18000.00, 30, 'Macet parah jam sibuk'),
+('TRP02', 'P02', 'R02', 'Stasiun', 'Perum Griya', 20, 25000.00, 35, 'Disuruh masuk jalan tikus rusak'),
+('TRP03', 'P03', 'R03', 'Pasar Maospati', 'Ring Road', 10, 12000.00, 25, 'Jalan tikus pasar padat');
+
+SELECT * FROM Ruas_Jalan;
+
+UPDATE Perjalanan 
+SET Estimasi_Tarif = 20000.00, 
+    Kendala_Operasional = 'Macet parah jam sibuk dan pengalihan arus'
+WHERE Kode_Perjalanan = 'TRP01';
+
+DELETE FROM Perjalanan 
+WHERE Kode_Perjalanan = 'TRP03';

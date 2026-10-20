@@ -1,0 +1,35 @@
+-- 1. Tabel Induk / Master Pertama: Pengguna
+CREATE TABLE Pengguna (
+    ID_Pengguna VARCHAR(50) PRIMARY KEY,
+    Peran_Pengguna VARCHAR(50) NOT NULL
+);
+
+-- 2. Tabel Induk / Master Kedua: Ruas_Jalan
+CREATE TABLE Ruas_Jalan (
+    Kode_Ruas VARCHAR(50) PRIMARY KEY,
+    Nama_Ruas_Jalan VARCHAR(100) NOT NULL,
+    Kondisi_Fisik VARCHAR(50),
+    Faktor_Pemicu VARCHAR(100),
+    Potensi_Bahaya VARCHAR(100)
+);
+
+-- 3. Tabel Transaksi / Anak: Perjalanan (Menghubungkan Pengguna & Ruas Jalan)
+CREATE TABLE Perjalanan (
+    Kode_Perjalanan VARCHAR(50) PRIMARY KEY,
+    ID_Pengguna VARCHAR(50) NOT NULL,
+    Kode_Ruas VARCHAR(50) NOT NULL,
+    Lokasi_Awal VARCHAR(100) NOT NULL,
+    Lokasi_Tujuan VARCHAR(100) NOT NULL,
+    Estimasi_Waktu INT, -- dalam satuan menit
+    Estimasi_Tarif DECIMAL(10,2),
+    Waktu_Nyata INT, -- dalam satuan menit
+    Kendala_Operasional VARCHAR(255),
+    
+    -- Deklarasi Foreign Key yang menghubungkan ke kedua Tabel Induk
+    CONSTRAINT fk_perjalanan_pengguna FOREIGN KEY (ID_Pengguna) 
+        REFERENCES Pengguna(ID_Pengguna) 
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_perjalanan_ruas FOREIGN KEY (Kode_Ruas) 
+        REFERENCES Ruas_Jalan(Kode_Ruas) 
+        ON DELETE CASCADE ON UPDATE CASCADE
+);

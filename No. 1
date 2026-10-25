@@ -3,7 +3,6 @@ CREATE TABLE Pengguna (
     ID_Pengguna VARCHAR(50) PRIMARY KEY,
     Peran_Pengguna VARCHAR(50) NOT NULL
 );
-
 -- 2. Tabel Induk / Master Kedua: Ruas_Jalan
 CREATE TABLE Ruas_Jalan (
     Kode_Ruas VARCHAR(50) PRIMARY KEY,

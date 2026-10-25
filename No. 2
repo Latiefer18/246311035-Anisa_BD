@@ -18,7 +18,7 @@ INSERT INTO Perjalanan (Kode_Perjalanan, ID_Pengguna, Kode_Ruas, Lokasi_Awal, Lo
 
 SELECT * FROM Ruas_Jalan;
 
-UPDATE Perjalanan 
+UPDATE Perjalanan
 SET Estimasi_Tarif = 20000.00, 
     Kendala_Operasional = 'Macet parah jam sibuk dan pengalihan arus'
 WHERE Kode_Perjalanan = 'TRP01';
